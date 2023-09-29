@@ -1273,6 +1273,22 @@ input:checked + .toggle-bg {
   height: 100vh;
 }
 
+.h-\[\] {
+  height: ;
+}
+
+.h-\[50vw\] {
+  height: 50vw;
+}
+
+.h-\[50vh\] {
+  height: 50vh;
+}
+
+.h-\[300px\] {
+  height: 300px;
+}
+
 .w-1\/2 {
   width: 50%;
 }
