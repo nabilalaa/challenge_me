@@ -5,7 +5,8 @@ module.exports = {
 		colors: {
 			maincolor: "#e63946",
 			secondarycolor: "#1d3557",
-			thirdcolor: "#a8dadc"
+			thirdcolor: "#a8dadc",
+			fourthcolor: "#f1faee"
 		},
 		container: {
 			center: true,

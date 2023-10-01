@@ -31,7 +31,7 @@ def index(request):
 
             login(request, authenticate(
                 request, username=name, password=password))
-            return redirect("home")
+            return redirect(index)
 
         # Form.objects.create(
         #     # global name,
@@ -47,49 +47,18 @@ def index(request):
     return render(request, "index.html", context)
 
 
-def login_view(request):
-
-    return
-
-
-def signup_view(request):
-    name = request.POST.get("username")
-    email = request.POST.get("email")
-    password = request.POST.get("password")
-    confirm_password = request.POST.get("confirm_password")
-    if request.method == "POST":
-        # print(request.POST)
-        print(not User.objects.filter(username=name).exists(), not User.objects.filter(
-            email=email).exists(), password == confirm_password)
-        if not User.objects.filter(username=name).exists() and User.objects.filter(email=email).exists() and password == confirm_password:
-            User.objects.create(
-                username=name,
-                email=email,
-                password=password
-            )
-
-    return redirect("/")
-
-
 def logout_view(request):
     logout(request)
     return redirect("/")
 
 
-def chat(request):
-    context = {
-
-    }
-    return render(request, "chat.html", context)
-
-
 def tournament(request, slug):
-    print(slug)
+    if not request.user.is_authenticated:
+        return redirect("/#subscription")
+
     context = {
         "game": AddGame.objects.get(name=slug),
 
         "tournaments": Tournament.objects.filter(name=slug),
-
-
     }
-    return render(request, "tournament.html", context)
+    return render(request, "tournaments.html", context)

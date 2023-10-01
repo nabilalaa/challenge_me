@@ -69,8 +69,3 @@ button_h4[4].onclick = function () {
 	}
 };
 
-// function loading() {
-// 	document.querySelector(".loading").style.visibility = "hidden";
-// 	document.body.style.overflow = "auto";
-// }
-// window.onload = loading;

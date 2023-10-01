@@ -1,11 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 * {
 	font-family: "Fjalla One", sans-serif;
 }
 html {
 	scroll-behavior: smooth;
+	background-color: #f1faee;
+}
+body {
+	overflow: hidden;
 }
 .logo {
 	font-family: "pacfont";
@@ -19,6 +24,9 @@ html {
 
 .button {
 	@apply bg-maincolor border border-maincolor p-4 block w-28 m-auto mt-4 rounded-xl;
+}
+.title-section {
+	@apply sm:text-5xl text-4xl text-secondarycolor m-auto mb-10 text-center capitalize;
 }
 
 .subscription {
@@ -39,27 +47,6 @@ html {
 	left: 50%;
 	transform: translate(-50%, -50%);
 }
-
-/* form {
-	flex-direction: column;
-	align-items: center;
-}
-
-form input {
-	width: 300px;
-	margin-bottom: 20px;
-	padding: 10px 15px;
-	text-transform: capitalize;
-	outline: none;
-	border: 1px solid #e63946;
-	height: 38px;
-	background-color: #f1faee;
-	transition: border 0.3s;
-}
-
-form input:focus {
-	border: 1px solid #1d3557;
-} */
 
 .about-inner h3 {
 	text-transform: capitalize;
@@ -90,8 +77,4 @@ form input:focus {
 	margin: 20px 0 20px 20px;
 	display: none;
 	line-height: 1.6;
-}
-
-.title-section {
-	@apply sm:text-5xl text-4xl text-secondarycolor m-auto mb-10 text-center capitalize;
 }
