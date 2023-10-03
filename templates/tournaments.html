@@ -3,7 +3,7 @@
 	<h1 class="text-sm">hello</h1>
 </section>      -->
 <header
-	class="w-full bg-center bg-cover relative"
+	class="w-full bg-top bg-cover relative"
 	style="background-image: url('{{game.photo_game.url}}')"
 >
 	<div class="overlay w-full h-full bg-secondarycolor bg-opacity-50">
@@ -30,20 +30,17 @@
 			<div
 				class="max-w-sm m-auto bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
 			>
-				<a href="#"
-					><img
-						class="rounded-t-lg"
-						src="https://placehold.co/600x400"
-						alt=""
-				/></a>
+				<img
+					class="rounded-t-lg"
+					src="https://placehold.co/600x400"
+					alt=""
+				/>
 				<div class="p-5">
-					<a href="#"
-						><h5
-							class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
-						>
-							{{tournament.name}}
-						</h5></a
+					<h5
+						class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
 					>
+						{{tournament.name|cut:"-"|striptags }}
+					</h5>
 					<p
 						class="mb-3 font-normal text-gray-700 dark:text-gray-400"
 					>
@@ -52,7 +49,7 @@
 						chronological order.
 					</p>
 					<a
-						href="#"
+						href="{%url 'tournament_participants' tournament.name|slugify  %}"
 						class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-maincolor rounded-lg hover:bg-secondarycolor focus:ring-4 focus:outline-none focus:ring-thirdcolor dark:bg-blue-600 dark:hover:bg-maincolor dark:focus:ring-secbg-secondarycolor"
 					>
 						Read more<svg

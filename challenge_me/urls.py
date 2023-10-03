@@ -6,6 +6,9 @@ urlpatterns = [
 
     path('logout', logout_view, name='logout'),
 
-    path('tournament/<str:slug>', tournament, name="tournament"),
+    path('tournaments/<str:slug>', tournaments, name="tournaments"),
+    path('tournament_participants/<str:slug>',
+         tournament_participants, name="tournament_participants"),
+
 
 ]

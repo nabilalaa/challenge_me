@@ -1,0 +1,174 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<header
+	class="w-full bg-top bg-cover relative"
+	style="background-image: url('{{tournament.game.photo_game.url}}')"
+>
+	<div class="overlay w-full h-full bg-secondarycolor bg-opacity-50">
+		<section class="about p-8 w-full">
+			<div class="container">
+				<div class="flex justify-center items-center">
+					<img
+						class="object-cover w-[300px] h-[300px]"
+						src="{{tournament.game.logo_game.url}}"
+						alt=""
+					/>
+				</div>
+			</div>
+		</section>
+	</div>
+</header>
+
+<section class="py-28">
+	<div class="container">
+		<form method="POST">
+			{% csrf_token %}
+			<button
+				class="text-white bg-maincolor w-full max-w-[200px] capitalize block font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+			>
+				join
+			</button>
+		</form>
+
+		<div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+			<div
+				class="w-full p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700"
+			>
+				<h5
+					class="text-xl mb-4 font-bold leading-none text-gray-900 dark:text-white"
+				>
+					Tournament Participants
+				</h5>
+				<div class="flow-root">
+					<ul
+						role="list"
+						class="divide-y divide-gray-200 dark:divide-gray-700"
+					>
+						{% for player in players %}
+						<li class="py-3 sm:py-4">
+							<div
+								class="flex items-center space-x-4"
+							>
+								<div class="flex-shrink-0">
+									<img
+										class="w-8 h-8 rounded-full"
+										src="/docs/images/people/profile-picture-1.jpg"
+										alt="Neil image"
+									/>
+								</div>
+								<div class="flex-1 min-w-0">
+									<p
+										class="text-sm font-medium text-gray-900 truncate dark:text-white"
+									>
+										{{player.name}}
+									</p>
+									<p
+										class="text-sm text-gray-500 truncate dark:text-gray-400"
+									>
+										email@windster.com
+									</p>
+								</div>
+							</div>
+						</li>
+						{% endfor %}
+					</ul>
+				</div>
+			</div>
+
+			<div
+				class="w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 max-h-[500px]"
+			>
+				<div class="sm:hidden">
+					<label for="tabs" class="sr-only"
+						>Select tab</label
+					>
+					<select
+						id="tabs"
+						class="bg-gray-50 border-0 border-b border-gray-200 text-gray-900 text-sm rounded-t-lg focus:ring-maincolor focus:border-maincolor block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-maincolor dark:focus:border-maincolor"
+					>
+						<option>Statistics</option>
+						<option>Services</option>
+						<option>FAQ</option>
+					</select>
+				</div>
+				<ul
+					class="hidden text-md font-medium text-center text-gray-500 divide-x divide-gray-200 rounded-lg sm:flex dark:divide-gray-600 dark:text-gray-400"
+					id="fullWidthTab"
+					data-tabs-toggle="#fullWidthTabContent"
+					role="tablist"
+				>
+					<li class="w-full">
+						<button
+							id="stats-tab"
+							data-tabs-target="#stats"
+							type="button"
+							role="tab"
+							aria-controls="stats"
+							aria-selected="true"
+							class="inline-block w-full hover:text-gray-500 target:text-maincolor focus:text-maincolor text-gray-600 p-4 rounded-tl-lg bg-gray-50 hover:bg-gray-100 focus:outline-none dark:bg-gray-700 dark:hover:bg-gray-600"
+						>
+							About
+						</button>
+					</li>
+					<li class="w-full">
+						<button
+							id="about-tab"
+							data-tabs-target="#about"
+							type="button"
+							role="tab"
+							aria-controls="about"
+							aria-selected="false"
+							class="inline-block hover:text-gray-500 focus:text-maincolor text-gray-600 w-full p-4 bg-gray-50 hover:bg-gray-100 focus:outline-none dark:bg-gray-700 dark:hover:bg-gray-600"
+						>
+							Services
+						</button>
+					</li>
+					<li class="w-full">
+						<button
+							id="faq-tab"
+							data-tabs-target="#faq"
+							type="button"
+							role="tab"
+							aria-controls="faq"
+							aria-selected="false"
+							class="inline-block hover:text-gray-500 focus:text-maincolor text-gray-600 w-full p-4 rounded-tr-lg bg-gray-50 hover:bg-gray-100 focus:outline-none dark:bg-gray-700 dark:hover:bg-gray-600"
+						>
+							FAQ
+						</button>
+					</li>
+				</ul>
+				<div
+					id="fullWidthTabContent"
+					class="border-t border-gray-200 dark:border-gray-600"
+				>
+					<div
+						class="hidden p-4 bg-white rounded-lg md:p-8 dark:bg-gray-800"
+						id="stats"
+						role="tabpanel"
+						aria-labelledby="stats-tab"
+					>
+						stats
+					</div>
+					<div
+						class="hidden p-4 bg-white rounded-lg md:p-8 dark:bg-gray-800"
+						id="about"
+						role="tabpanel"
+						aria-labelledby="about-tab"
+					>
+						about
+					</div>
+					<div
+						class="hidden p-4 bg-white rounded-lg md:p-8 dark:bg-gray-800"
+						id="faq"
+						role="tabpanel"
+						aria-labelledby="faq-tab"
+					>
+						fq
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+{% endblock %}

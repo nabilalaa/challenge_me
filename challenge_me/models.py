@@ -2,7 +2,7 @@ from django.db import models
 
 
 class AddGame(models.Model):
-    name = models.CharField(max_length=15)
+    name = models.CharField(max_length=100)
     photo_game = models.ImageField(null=True, blank=True)
     logo_game = models.ImageField(null=True, blank=True)
 
@@ -13,8 +13,18 @@ class AddGame(models.Model):
 
 class Tournament (models.Model):
 
-    name = models.CharField(max_length=15,)
+    name = models.CharField(max_length=100)
     photo_game = models.ImageField(null=True, blank=True)
+    game = models.ForeignKey(AddGame, on_delete=models.DO_NOTHING, null=True)
+
+    def __str__(self):
+        return self.name
+
+
+class Player (models.Model):
+
+    name = models.CharField(max_length=100)
+    tournament = models.ForeignKey(Tournament, related_name="tournament",on_delete=models.DO_NOTHING, null=True)
 
     def __str__(self):
         return self.name

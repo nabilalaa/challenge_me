@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
+from django.contrib.messages import constants as messages
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -43,6 +44,8 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
+
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -121,13 +124,14 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / "challenge_me/static",
 ]
-STATIC_ROOT = BASE_DIR /'static'
+STATIC_ROOT = BASE_DIR / 'static'
 
 COMPRESS_ROOT = BASE_DIR / 'challenge_me/static'
 
 COMPRESS_ENABLED = True
 
-STATICFILES_FINDERS = ('compressor.finders.CompressorFinder',"django.contrib.staticfiles.finders.AppDirectoriesFinder")
+STATICFILES_FINDERS = ('compressor.finders.CompressorFinder',
+                       "django.contrib.staticfiles.finders.AppDirectoriesFinder")
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media/"
@@ -136,3 +140,11 @@ MEDIA_ROOT = BASE_DIR / "media/"
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+MESSAGE_TAGS = {
+    messages.INFO: 'blue',
+    messages.SUCCESS: 'green',
+    messages.WARNING: 'yellow',
+    messages.ERROR: 'red',
+}
