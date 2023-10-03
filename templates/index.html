@@ -8,11 +8,13 @@
 	<div class="container">
 		<h2 class="title-section">tournaments</h2>
 		<div
-			class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
+			class="grid justify-center grid-cols-[repeat(1,_minmax(0,_300px))] sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
 			id="tournaments"
 		>
 			{% for game in add_game %}
-			<div class="relative sm:w-80 sm:m-auto h-[500px] rounded-2xl">
+			<div
+				class="relative w-full max-sm:m-auto h-[500px] rounded-2xl"
+			>
 				<a href="{%url 'tournaments' game.name|slugify %}">
 					<div class="absolute w-full h-full">
 						<img
