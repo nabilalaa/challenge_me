@@ -40,17 +40,16 @@
 
 		<!-- start loading section -->
 
-		{% include "components/loading.html" %} {% comment %}
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
-		{% endcomment %}
+		{% include "components/loading.html" %}
 		<script>
-			console.log("fff");
-			setTimeout(() => {
-				var script = document.createElement("script");
-				script.src =
-					"https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js";
-				document.getElementsByTagName("body")[0].appendChild(script);
-			}, 100);
+			document.addEventListener("DOMContentLoaded", () => {
+				setTimeout(() => {
+					var script = document.createElement("script");
+					script.src =
+						"https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js";
+					document.getElementsByTagName("body")[0].appendChild(script);
+				}, 100);
+			});
 		</script>
 	</body>
 </html>
