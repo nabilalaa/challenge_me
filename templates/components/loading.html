@@ -11,5 +11,5 @@
 		document.querySelector(".loading").style.display = "none";
 		document.body.style.overflow = "auto";
 	}
-	window.onload = setTimeout(loading, 1000);
+	document.addEventListener("DOMContentLoaded", setTimeout(loading, 1000));
 </script>
