@@ -56,7 +56,7 @@ def sign_in(request):
             print("username is exist")
             return redirect("/#subscription")
 
-    return redirect("/")
+    return redirect(index)
 
 
 def login_view(request):
@@ -78,7 +78,7 @@ def login_view(request):
 
 def logout_view(request):
     logout(request)
-    return redirect("/")
+    return redirect(index)
 
 
 def tournaments(request, slug):
@@ -96,11 +96,11 @@ def tournaments(request, slug):
 def tournament_participants(request, slug):
     if not request.user.is_authenticated:
         return redirect("/#subscription")
-    
+
     if request.method == "POST":
         Player.objects.create(
             name=request.user, tournament_id=Tournament.objects.get(name=slug.replace("-", " ")).id)
-        
+
     context = {
         "players": Player.objects.all(),
 

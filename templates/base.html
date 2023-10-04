@@ -1,68 +1,60 @@
 <!DOCTYPE html>
-{% load static %}
- 
-{% load compress %}
+{% load static %} {% load compress %}
 
 <html lang="en">
-	
-    <head>
-	
-        <meta name="describtion" content="dd" />
+	<head>
+		<meta name="describtion" content="dd" />
 
-	
-        <meta charset="UTF-8" />
+		<meta charset="UTF-8" />
 
-	
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
 
-	
-        <link rel="stylesheet" href="{% static 'css/pacfont.css' %}" />
+		<link rel="stylesheet" href="{% static 'css/pacfont.css' %}" />
 
-	
-        <link rel="stylesheet"
-              href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" />
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap"
+		/>
 
-	
-        {% compress css %}
+		{% compress css %}
 
-	
-            <link rel="stylesheet" href="{% static 'css/output.css' %}" />
+		<link rel="stylesheet" href="{% static 'css/output.css' %}" />
 
-	
-        {% endcompress %}
+		{% endcompress %}
 
-        <title>Challenge Me</title>
+		<title>Challenge Me</title>
+	</head>
 
-    </head>
+	<body>
+		<!-- start nav section -->
 
-	
-    <body>
-        <!-- start nav section -->
+		{% include "components/nav.html" %}
 
-	
-        {% include "components/nav.html" %}
+		<!-- start content -->
 
-        <!-- start content -->
+		{% block content %} {% endblock content %}
 
-	
-        {% block content %}
- 
-        {% endblock content %}
+		<!-- start footer section -->
 
-        <!-- start footer section -->
+		{% include "components/footer.html" %}
 
-	
-        {% include "components/footer.html" %}
+		<!-- start loading section -->
 
-        <!-- start loading section -->
-
-	
-        {% include "components/loading.html" %}
-
-        {% comment %}
+		{% include "components/loading.html" %} {% comment %}
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
-        {% endcomment %}
-        <script defer src="{% static 'js/flowbite.min.js' %}"></script>
-
-    </body>
+		{% endcomment %}
+		<script>
+			setTimeout(() => {
+				var script = document.createElement("script");
+				script.src =
+					"https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js";
+				document
+					.getElementsByTagName("body")[0]
+					.appendChild(script);
+			}, 100);
+		</script>
+	</body>
 </html>
