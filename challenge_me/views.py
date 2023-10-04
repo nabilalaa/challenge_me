@@ -6,54 +6,6 @@ from django.contrib import messages
 
 
 def index(request):
-    # name = request.POST.get("username")
-    # email = request.POST.get("email")
-    # password = request.POST.get("password")
-    # confirm_password = request.POST.get("confirm_password")
-    # if request.method == "POST":
-    #     if not User.objects.filter(username=name).exists():
-    #         if not User.objects.filter(email=email).exists():
-    #             if password == confirm_password:
-    #                 if len(password) >= 8 and len(confirm_password) >= 8:
-    #                     User.objects.create_user(
-    #                         username=name,
-    #                         email=email,
-    #                         password=password
-    #                     )
-    #                     messages.success(
-    #                         request, "register has been successfully")
-    #                     return redirect("/#subscription")
-
-    #                 else:
-    #                     messages.error(
-    #                         request, "password must be Greater than 8 letters ")
-    #                     print("password is exist")
-    #                     return redirect("/#subscription")
-    #             else:
-    #                 messages.error(
-    #                     request, "password is not the same confirm password")
-    #                 print("password is exist")
-    #                 return redirect("/#subscription")
-
-    #         else:
-    #             messages.error(
-    #                 request, "email is exist")
-    #             print("email is exist")
-    #             return redirect("/#subscription")
-
-    #     elif authenticate(request, username=name, password=password):
-    #         print(authenticate(request, username=name, password=password))
-
-    #         login(request, authenticate(
-    #             request, username=name, password=password))
-    #         return redirect(index)
-    #     else:
-
-    #         messages.error(
-    #             request, "username is exist")
-    #         print("username is exist")
-    #         return redirect("/#subscription")
-
     context = {
         "add_game": AddGame.objects.all(),
         "add_about": About.objects.all(),
@@ -78,29 +30,29 @@ def sign_in(request):
                             password=password
                         )
                         messages.success(
-                            request, "register has been successfully")
+                            request, "register has been successfully", extra_tags="sign_in")
                         return redirect("/#subscription")
 
                     else:
                         messages.error(
-                            request, "password must be Greater than 8 letters ")
+                            request, "password must be Greater than 8 letters ", extra_tags="sign_in")
                         print("password is exist")
                         return redirect("/#subscription")
                 else:
                     messages.error(
-                        request, "password is not the same confirm password")
+                        request, "password is not the same confirm password", extra_tags="sign_in")
                     print("password is exist")
                     return redirect("/#subscription")
 
             else:
                 messages.error(
-                    request, "email is exist")
+                    request, "email is exist", extra_tags="sign_in")
                 print("email is exist")
                 return redirect("/#subscription")
         else:
 
             messages.error(
-                request, "username is exist")
+                request, "username is exist", extra_tags="sign_in")
             print("username is exist")
             return redirect("/#subscription")
 
@@ -118,7 +70,7 @@ def login_view(request):
             request, username=name, password=password))
     else:
         messages.error(
-            request, "username or password is wrong")
+            request, "username or password is wrong", extra_tags="login")
         return redirect("/#subscription")
 
     return redirect(index)
@@ -133,7 +85,6 @@ def tournaments(request, slug):
     if not request.user.is_authenticated:
         return redirect("/#subscription")
 
-    print()
     context = {
         "game": AddGame.objects.get(name=slug.replace("-", " ")),
 
@@ -143,16 +94,13 @@ def tournaments(request, slug):
 
 
 def tournament_participants(request, slug):
-
-    # print(name)
-
     if not request.user.is_authenticated:
         return redirect("/#subscription")
-
+    
     if request.method == "POST":
-        # pass
         Player.objects.create(
             name=request.user, tournament_id=Tournament.objects.get(name=slug.replace("-", " ")).id)
+        
     context = {
         "players": Player.objects.all(),
 

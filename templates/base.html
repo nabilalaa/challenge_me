@@ -1,45 +1,68 @@
 <!DOCTYPE html>
-{% load static %} {% load compress %}
+{% load static %}
+ 
+{% load compress %}
 
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta
-			name="viewport"
-			content="width=device-width, initial-scale=1.0"
-		/>
-		<link rel="stylesheet" href="{% static 'css/pacfont.css' %}" />
-		<link
-			rel="stylesheet"
-			href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap"
-		/>
+	
+    <head>
+	
+        <meta name="descrition" content="dd" />
 
-		{% compress css %}
-		<link rel="stylesheet" href="{% static 'css/output.css' %}" />
-		{% endcompress %}
+	
+        <meta charset="UTF-8" />
 
-		<title>Challenge Me</title>
-	</head>
-	<body>
-		<!-- start nav section -->
+	
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-		{% include 'components/nav.html' %}
+	
+        <link rel="stylesheet" href="{% static 'css/pacfont.css' %}" />
 
-		<!-- start content -->
+	
+        <link rel="stylesheet"
+              href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" />
 
-		{% block content %} {% endblock content %}
+	
+        {% compress css %}
 
-		<!-- start footer section -->
+	
+            <link rel="stylesheet" href="{% static 'css/output.css' %}" />
 
-		{% include 'components/footer.html' %}
+	
+        {% endcompress %}
 
-		<!-- start loading section -->
+        <title>Challenge Me</title>
+	
+    </head>
 
-		{% include 'components/loading.html' %}
-		<script src="{% static 'js/flowbite.min.js' %}"></script>
+	
+    <body>
+        <!-- start nav section -->
 
-		{% comment %}
+	
+        {% include "components/nav.html" %}
+
+        <!-- start content -->
+
+	
+        {% block content %}
+ 
+        {% endblock content %}
+
+        <!-- start footer section -->
+
+	
+        {% include "components/footer.html" %}
+
+        <!-- start loading section -->
+
+	
+        {% include "components/loading.html" %}
+        <script src="{% static 'js/flowbite.min.js' %}"></script>
+
+        {% comment %}
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
-		{% endcomment %}
-	</body>
+        {% endcomment %}
+	
+    </body>
 </html>
