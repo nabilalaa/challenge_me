@@ -1,5 +1,6 @@
 .idea
 node_modules
+__pycache__
 .vscode
 
 challenge_me/static/CHCHE
