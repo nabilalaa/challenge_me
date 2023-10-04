@@ -3,14 +3,11 @@
 
 <html lang="en">
 	<head>
-		<meta name="describtion" content="dd" />
+		<meta name="description" content="dd" />
 
 		<meta charset="UTF-8" />
 
-		<meta
-			name="viewport"
-			content="width=device-width, initial-scale=1.0"
-		/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 		<link rel="stylesheet" href="{% static 'css/pacfont.css' %}" />
 
@@ -47,13 +44,12 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
 		{% endcomment %}
 		<script>
+			console.log("fff");
 			setTimeout(() => {
 				var script = document.createElement("script");
 				script.src =
 					"https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js";
-				document
-					.getElementsByTagName("body")[0]
-					.appendChild(script);
+				document.getElementsByTagName("body")[0].appendChild(script);
 			}, 100);
 		</script>
 	</body>
