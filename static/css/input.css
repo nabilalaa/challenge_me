@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+	font-family: "Fjalla One", sans-serif;
+}
+html {
+	scroll-behavior: smooth;
+	background-color: #f1faee;
+}
+body {
+	overflow: hidden;
+}
+.logo {
+	font-family: "pacfont";
+	color: #1d3557;
+}
+
+.logo span {
+	font-family: "pacfont";
+	color: #f1faee;
+}
+
+.button {
+	@apply bg-maincolor border border-maincolor p-4 block w-28 m-auto mt-4 rounded-xl;
+}
+.title-section {
+	@apply sm:text-5xl text-4xl text-secondarycolor m-auto mb-10 text-center capitalize;
+}
+
+.subscription {
+	background-color: #f1faee;
+}
+
+.or {
+	border-radius: 50%;
+	width: 50px;
+	height: 50px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #e63946;
+	color: #f1faee;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.about-inner h3 {
+	text-transform: capitalize;
+	font-size: 30px;
+	margin-bottom: 50px;
+	color: #1d3557;
+}
+.questions {
+	margin-top: 20px;
+}
+.questions h4 {
+	text-transform: capitalize;
+	font-size: 20px;
+	color: #1d3557;
+	cursor: pointer;
+	position: relative;
+	font-weight: 200;
+}
+
+.questions h4 i {
+	position: absolute;
+	right: 0;
+	font-size: 20px;
+}
+
+.questions p {
+	color: #f1faee;
+	margin: 20px 0 20px 20px;
+	display: none;
+	line-height: 1.6;
+}
