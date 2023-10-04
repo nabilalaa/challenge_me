@@ -70,11 +70,9 @@
 				</li>
 				{% endif %}
 				<button
-					data-collapse-toggle="navbar-user"
+					id="navbar-btn"
 					type="button"
 					class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-secondarycolor rounded-lg lg:hidden hover:bg-[#f1faee] focus:outline-none focus:ring-2 focus:ring-[#f1faee] dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-					aria-controls="navbar-user"
-					aria-expanded="false"
 				>
 					<span class="sr-only">Open main menu</span>
 					<svg
@@ -96,7 +94,7 @@
 			</div>
 
 			<div
-				class="items-center justify-between hidden w-full lg:flex lg:w-auto lg:order-2"
+				class="items-center hidden justify-between w-full lg:flex lg:w-auto lg:order-2"
 				id="navbar-user"
 			>
 				<ul
@@ -145,3 +143,9 @@
 		</div>
 	</div>
 </nav>
+
+<script>
+	document.querySelector("#navbar-btn").addEventListener("click", () => {
+		document.querySelector("#navbar-user").classList.toggle("hidden");
+	});
+</script>
