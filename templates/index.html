@@ -10,9 +10,7 @@
 			id="tournaments"
 		>
 			{% for game in add_game %}
-			<div
-				class="relative w-full max-sm:m-auto h-[500px] rounded-2xl"
-			>
+			<div class="relative w-full max-sm:m-auto h-[500px] rounded-2xl">
 				<a href="{% url 'tournaments' game.name|slugify %}">
 					<div class="absolute w-full h-full">
 						<img
@@ -56,9 +54,7 @@
 					class="flex items-center mb-8 w-full p-4 text-{{ message.tags }}-500 bg-{{ message.tags }}-50 rounded-lg shadow dark:text-gray-400 dark:bg-gray-800"
 					role="alert"
 				>
-					<div
-						class="ml-3 text-sm font-normal text-{{ message.tags }}-800"
-					>
+					<div class="ml-3 text-sm font-normal text-{{ message.tags }}-800">
 						{{ message|safe }}
 					</div>
 					<button
@@ -126,6 +122,7 @@
 						Password
 					</label>
 					<input
+						autocomplete
 						type="password"
 						name="password"
 						id="password"
@@ -142,6 +139,7 @@
 						Confirm Password
 					</label>
 					<input
+						autocomplete
 						type="password"
 						name="confirm_password"
 						id="confirm password"
@@ -150,14 +148,10 @@
 						required
 					/>
 				</div>
-				<button class="button capitalize text-white">
-					send
-				</button>
+				<button class="button capitalize text-white">send</button>
 			</form>
 			{% if not user.is_authenticated %}
-			<div
-				class="lg:w-[2px] lg:m-0 max-lg:h-[2px] my-14 relative bg-maincolor"
-			>
+			<div class="lg:w-[2px] lg:m-0 max-lg:h-[2px] my-14 relative bg-maincolor">
 				<div class="or">or</div>
 			</div>
 			<form
@@ -176,9 +170,7 @@
 					class="flex items-center mb-8 w-full p-4 text-{{ message.tags }}-500 bg-{{ message.tags }}-50 rounded-lg shadow dark:text-gray-400 dark:bg-gray-800"
 					role="alert"
 				>
-					<div
-						class="ml-3 text-sm font-normal text-{{ message.tags }}-800"
-					>
+					<div class="ml-3 text-sm font-normal text-{{ message.tags }}-800">
 						{{ message|safe }}
 					</div>
 					<button
@@ -238,9 +230,7 @@
 						required
 					/>
 				</div>
-				<button class="button capitalize text-white">
-					send
-				</button>
+				<button class="button capitalize text-white">send</button>
 			</form>
 			{% endif %}
 		</div>
@@ -250,9 +240,7 @@
 <section class="about py-28 bg-maincolor" id="about">
 	<div class="container">
 		<h2 class="title-section">about</h2>
-		<div
-			class="about-content flex flex-col justify-between lg:flex-row gap-8"
-		>
+		<div class="about-content flex flex-col justify-between lg:flex-row gap-8">
 			<div class="about-inner w-full">
 				<h3>frequently asked questions about our site</h3>
 				<div class="questions mb-8">
@@ -275,11 +263,9 @@
 						</svg>
 					</h4>
 					<p class="max-w-lg">
-						Quia iusto hic ipsam assumenda itaque
-						exercitationem debitis sapiente, inventore
-						nemo molestiae Quia iusto hic ipsam
-						assumenda itaque exercitationem debitis
-						sapiente, inventore nemo molestiae
+						Quia iusto hic ipsam assumenda itaque exercitationem debitis
+						sapiente, inventore nemo molestiae Quia iusto hic ipsam assumenda
+						itaque exercitationem debitis sapiente, inventore nemo molestiae
 					</p>
 				</div>
 				<div class="questions mb-8">
@@ -302,11 +288,9 @@
 						</svg>
 					</h4>
 					<p class="max-w-lg">
-						Quia iusto hic ipsam assumenda itaque
-						exercitationem debitis sapiente, inventore
-						nemo molestiae Quia iusto hic ipsam
-						assumenda itaque exercitationem debitis
-						sapiente, inventore nemo molestiae
+						Quia iusto hic ipsam assumenda itaque exercitationem debitis
+						sapiente, inventore nemo molestiae Quia iusto hic ipsam assumenda
+						itaque exercitationem debitis sapiente, inventore nemo molestiae
 					</p>
 				</div>
 				<div class="questions mb-8">
@@ -329,11 +313,9 @@
 						</svg>
 					</h4>
 					<p class="max-w-lg">
-						Quia iusto hic ipsam assumenda itaque
-						exercitationem debitis sapiente, inventore
-						nemo molestiae Quia iusto hic ipsam
-						assumenda itaque exercitationem debitis
-						sapiente, inventore nemo molestiae
+						Quia iusto hic ipsam assumenda itaque exercitationem debitis
+						sapiente, inventore nemo molestiae Quia iusto hic ipsam assumenda
+						itaque exercitationem debitis sapiente, inventore nemo molestiae
 					</p>
 				</div>
 				<div class="questions mb-8">
@@ -356,11 +338,9 @@
 						</svg>
 					</h4>
 					<p class="max-w-lg">
-						Quia iusto hic ipsam assumenda itaque
-						exercitationem debitis sapiente, inventore
-						nemo molestiae Quia iusto hic ipsam
-						assumenda itaque exercitationem debitis
-						sapiente, inventore nemo molestiae
+						Quia iusto hic ipsam assumenda itaque exercitationem debitis
+						sapiente, inventore nemo molestiae Quia iusto hic ipsam assumenda
+						itaque exercitationem debitis sapiente, inventore nemo molestiae
 					</p>
 				</div>
 				<div class="questions mb-8">
@@ -383,11 +363,9 @@
 						</svg>
 					</h4>
 					<p class="max-w-lg">
-						Quia iusto hic ipsam assumenda itaque
-						exercitationem debitis sapiente, inventore
-						nemo molestiae Quia iusto hic ipsam
-						assumenda itaque exercitationem debitis
-						sapiente, inventore nemo molestiae
+						Quia iusto hic ipsam assumenda itaque exercitationem debitis
+						sapiente, inventore nemo molestiae Quia iusto hic ipsam assumenda
+						itaque exercitationem debitis sapiente, inventore nemo molestiae
 					</p>
 				</div>
 			</div>
