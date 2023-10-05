@@ -17,6 +17,8 @@
 					class="flex mr-3 text-sm bg-gray-800 rounded-full lg:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
 					id="user-menu-button"
 					data-dropdown-toggle="user-dropdown"
+					aria-expanded="false"
+					data-dropdown-placement="bottom"
 				>
 					<span class="sr-only">Open user menu</span>
 					<img
@@ -147,7 +149,7 @@
 		document.querySelector("#navbar-user").classList.toggle("hidden");
 	});
 
-	document.querySelector("#user-menu-button").addEventListener("click", () => {
-		document.querySelector("#user-dropdown").classList.toggle("hidden");
-	});
+	// document.querySelector("#user-menu-button").addEventListener("click", () => {
+	// 	document.querySelector("#user-dropdown").classList.toggle("hidden");
+	// });
 </script>
