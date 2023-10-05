@@ -146,7 +146,10 @@
 	document.querySelector("#navbar-btn").addEventListener("click", () => {
 		document.querySelector("#navbar-user").classList.toggle("hidden");
 	});
-	document.querySelector("#user-menu-button").addEventListener("click", () => {
-		document.querySelector("#user-dropdown").classList.toggle("hidden");
-	});
+	export function initFlowbite() {
+		initDropdowns();
+	}
+	// document.querySelector("#user-menu-button").addEventListener("click", () => {
+	// 	document.querySelector("#user-dropdown").classList.toggle("hidden");
+	// });
 </script>
