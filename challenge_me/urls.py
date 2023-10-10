@@ -13,5 +13,8 @@ urlpatterns = [
     path('tournament_participants/<str:slug>',
          tournament_participants, name="tournament_participants"),
 
+    path('unjoind', unjoind, name='unjoind'),
+
+
 
 ]

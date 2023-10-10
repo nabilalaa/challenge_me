@@ -94,16 +94,31 @@ def tournaments(request, slug):
 
 
 def tournament_participants(request, slug):
+    if Player.objects.filter(name=request.user):
+        messsage_joind = "leave"
+    else:
+        messsage_joind = "join"
+
     if not request.user.is_authenticated:
         return redirect("/#subscription")
 
     if request.method == "POST":
-        Player.objects.create(
-            name=request.user, tournament_id=Tournament.objects.get(name=slug.replace("-", " ")).id)
+        if (not Player.objects.filter(name=request.user)):
+            Player.objects.create(
+                name=request.user, tournament_id=Tournament.objects.get(name=slug.replace("-", " ")).id)
+            messsage_joind = "leave"
+        else:
+
+            Player.objects.filter(name=request.user).delete()
+            messsage_joind = "join"
 
     context = {
         "players": Player.objects.all(),
-
+        "message": messsage_joind,
         "tournament": Tournament.objects.get(name=slug.replace("-", " ")),
     }
     return render(request, "tournament_participants.html", context)
+
+
+def unjoind(request):
+    print(request)
