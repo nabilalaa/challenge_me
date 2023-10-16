@@ -3,6 +3,7 @@ from .models import *
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 def index(request):
@@ -94,6 +95,20 @@ def tournaments(request, slug):
 
 
 def tournament_participants(request, slug):
+    print(request.GET)
+    players_list = Player.objects.all()
+    paginator = Paginator(players_list, 3)
+    page_number = request.GET.get("page", 1)
+    try:
+
+        players = paginator.page(page_number)
+
+    except EmptyPage:
+        players = paginator.page(paginator.num_pages)
+    except PageNotAnInteger:
+        players = paginator.page(1)
+
+        pass
     if Player.objects.filter(name=request.user):
         messsage_joind = "leave"
     else:
@@ -113,7 +128,7 @@ def tournament_participants(request, slug):
             messsage_joind = "join"
 
     context = {
-        "players": Player.objects.all(),
+        "players": players,
         "message": messsage_joind,
         "tournament": Tournament.objects.get(name=slug.replace("-", " ")),
     }
