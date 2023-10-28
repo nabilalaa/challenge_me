@@ -3,8 +3,9 @@ from django.db import models
 
 class AddGame(models.Model):
     name = models.CharField(max_length=100)
-    photo_game = models.ImageField(null=True, blank=True)
-    logo_game = models.ImageField(null=True, blank=True)
+    photo_game = models.ImageField(
+        null=True, blank=True, upload_to="challenge")
+    logo_game = models.ImageField(null=True, blank=True,upload_to="challenge")
 
     def __str__(self):
 
@@ -14,7 +15,7 @@ class AddGame(models.Model):
 class Tournament (models.Model):
 
     name = models.CharField(max_length=100)
-    photo_game = models.ImageField(null=True, blank=True)
+    photo_game = models.ImageField(null=True, blank=True,upload_to="challenge")
     game = models.ForeignKey(AddGame, on_delete=models.DO_NOTHING, null=True)
     description = models.TextField(null=1)
     prizes = models.TextField(null=1)
@@ -41,15 +42,3 @@ class About(models.Model):
     def __str__(self):
         return self.title_about
 
-
-class Form(models.Model):
-    name = models.CharField(max_length=40)
-    email = models.CharField(max_length=200)
-    password = models.CharField(max_length=25)
-
-    def __str__(self):
-        return self.name
-
-    class Meta:
-        verbose_name_plural = "sign in"
-        db_table = "app_sign in"
