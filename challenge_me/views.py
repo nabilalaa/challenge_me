@@ -97,7 +97,7 @@ def tournaments(request, slug):
 def tournament_participants(request, slug):
     print(request.GET)
     players_list = Player.objects.all()
-    paginator = Paginator(players_list, 3)
+    paginator = Paginator(players_list, 10)
     page_number = request.GET.get("page", 1)
     try:
 
