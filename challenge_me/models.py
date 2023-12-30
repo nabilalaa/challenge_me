@@ -18,13 +18,13 @@ class Tournament (models.Model):
     photo_game = models.ImageField(
         null=True, blank=True, upload_to="challenge")
     game = models.ForeignKey(
-        AddGame, on_delete=models.DO_NOTHING, null=True, db_column="game")
+        AddGame, on_delete=models.DO_NOTHING, null=True)
     description = models.TextField(null=1)
     prizes = models.TextField(null=1)
     notes = models.TextField(null=1)
 
     def __str__(self):
-        return self.name
+        return str(self.game.name)
 
 
 class Player (models.Model):
