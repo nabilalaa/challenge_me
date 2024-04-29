@@ -42,11 +42,15 @@ INSTALLED_APPS = [
     'compressor',
     'cloudinary_storage',
     'cloudinary',
+    "rest_framework",
+    "django_filters",
+    "corsheaders"
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     "whitenoise.middleware.WhiteNoiseMiddleware",
+    'corsheaders.middleware.CorsMiddleware',
 
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -91,7 +95,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'postgres',
         'USER': 'postgres.owksxfxxjhfgizpcezpo',
-        'PASSWORD': 'HZScG4ZT5IiSL2QZ',
+        'PASSWORD': 'LtfdJ0WCKrziH0P1',
         'HOST': 'aws-0-us-east-1.pooler.supabase.com',
         'PORT': '5432',
         'OPTIONS': {'sslmode': 'require'},
@@ -168,5 +172,13 @@ CLOUDINARY_STORAGE = {
     'API_KEY': '275415985338552',
     'API_SECRET': 'DKD0v40ucrKTg_y23SC2xNIdSHc'
 }
+CORS_ALLOW_HEADERS = "*"
+# CORS_ALLOWED_ORIGINS = [
+#     'http://127.0.0.1:8000/',
+# ]
+
+CORS_ALLOW_ALL_ORIGINS = True
+# CORS_ALLOW_HEADERS = "access-control-allow-origin"
+
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
