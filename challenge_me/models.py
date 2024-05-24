@@ -4,21 +4,32 @@ from django.db import models
 class AddGame(models.Model):
     name = models.CharField(max_length=100)
     photo_game = models.ImageField(
-        null=True, blank=True, upload_to="challenge")
-    logo_game = models.ImageField(null=True, blank=True, upload_to="challenge")
+        null=True, blank=True, upload_to="challenge", default="https://placehold.co/600x400")
+    logo_game = models.ImageField(
+        null=True, blank=True, upload_to="challenge", default="https://placehold.co/600x400")
 
     def __str__(self):
 
         return self.name
 
 
+GAMES = [
+    (g.name, g.name)
+    for g in AddGame.objects.all()
+]
+
+print(GAMES)
+
+
 class Tournament (models.Model):
 
     name = models.CharField(max_length=100)
     photo_game = models.ImageField(
-        null=True, blank=True, upload_to="challenge")
+        null=True, blank=True, upload_to="challenge", default="https://placehold.co/600x400")
     game = models.ForeignKey(
         AddGame, on_delete=models.DO_NOTHING, null=True)
+    games = models.CharField(choices=GAMES, null=True)
+
     description = models.TextField(null=1)
     prizes = models.TextField(null=1)
     notes = models.TextField(null=1)

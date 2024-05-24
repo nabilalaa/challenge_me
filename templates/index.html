@@ -13,11 +13,19 @@
 			<div class="relative w-full max-sm:m-auto h-[500px] rounded-2xl">
 				<a href="{% url 'tournaments' game.name|slugify %}">
 					<div class="absolute w-full h-full">
+						{%if game.photo_game %}
 						<img
 							class="object-cover w-full h-full rounded-2xl"
 							src="{{ game.photo_game.url }}"
 							alt="{{ game.name }}"
 						/>
+						{%else%}
+						<img
+							class="object-cover w-full h-full rounded-2xl"
+							src="https://placehold.co/600x400"
+							alt="{{ game.name }}"
+						/>
+						{%endif%}
 					</div>
 					<div
 						class="overlay absolute w-full h-full bg-secondarycolor bg-opacity-70 rounded-2xl"
@@ -25,7 +33,13 @@
 						<div
 							class="overlay-logo absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 max-w-lg w-52"
 						>
+							{%if game.logo_game %}
 							<img src="{{ game.logo_game.url }}" />
+
+							{%else%}
+							<img src="https://placehold.co/600x400" />
+
+							{%endif%}
 						</div>
 					</div>
 				</a>
