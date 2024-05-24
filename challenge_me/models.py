@@ -12,8 +12,6 @@ class AddGame(models.Model):
         return self.name
 
 
-print(AddGame.objects.all())
-
 GAMES = (
     (g.name, g.name)
 
@@ -21,8 +19,6 @@ GAMES = (
 
 
 )
-
-print(GAMES)
 
 
 class Tournament (models.Model):
