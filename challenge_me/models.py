@@ -12,6 +12,19 @@ class AddGame(models.Model):
         return self.name
 
 
+print(AddGame.objects.all())
+
+GAMES = (
+    (g.name, g.name)
+
+    for g in AddGame.objects.all()
+
+
+)
+
+print(GAMES)
+
+
 class Tournament (models.Model):
 
     name = models.CharField(max_length=100)
@@ -19,6 +32,7 @@ class Tournament (models.Model):
         null=True, blank=True, upload_to="challenge")
     game = models.ForeignKey(
         AddGame, on_delete=models.DO_NOTHING, null=True)
+    games = models.CharField(choices=GAMES, null=1)
     description = models.TextField(null=1)
     prizes = models.TextField(null=1)
     notes = models.TextField(null=1)
