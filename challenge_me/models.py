@@ -16,12 +16,12 @@ class AddGame(models.Model):
 GAMES = []
 
 
-for g in AddGame.objects.all():
-    GAMES.append((g.name, g.name))
+# for g in AddGame.objects.all():
+#     GAMES.append((g.name, g.name))
 
-GAMES = tuple(GAMES)
+# GAMES = tuple(GAMES)
 
-print(GAMES)
+# print(GAMES)
 
 
 class Tournament (models.Model):
@@ -32,7 +32,7 @@ class Tournament (models.Model):
     game = models.ForeignKey(
 
         AddGame, on_delete=models.SET_NULL)
-    games = models.CharField(choices=GAMES, null=True)
+    # games = models.CharField(choices=GAMES, null=True)
 
     description = models.TextField(null=1)
     prizes = models.TextField(null=1)
