@@ -31,7 +31,7 @@ class Tournament (models.Model):
         null=True, blank=True, upload_to="challenge", default="https://placehold.co/600x400")
     game = models.ForeignKey(
 
-        AddGame, on_delete=models.SET_NULL)
+        AddGame, on_delete=models.SET_NULL, null=True)
     # games = models.CharField(choices=GAMES, null=True)
 
     description = models.TextField(null=1)
