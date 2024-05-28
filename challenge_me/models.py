@@ -31,7 +31,7 @@ class Tournament (models.Model):
         null=True, blank=True, upload_to="challenge", default="https://placehold.co/600x400")
     game = models.ForeignKey(
 
-        AddGame, on_delete=models.DO_NOTHING)
+        AddGame, on_delete=models.SET_NULL)
     games = models.CharField(choices=GAMES, null=True)
 
     description = models.TextField(null=1)
@@ -46,7 +46,7 @@ class Player (models.Model):
 
     name = models.CharField(max_length=100)
     tournament = models.ForeignKey(
-        Tournament, related_name="tournament", on_delete=models.DO_NOTHING, null=True)
+        Tournament, related_name="tournament", on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
         return self.name
