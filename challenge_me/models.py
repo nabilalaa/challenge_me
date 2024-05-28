@@ -2,7 +2,7 @@ from django.db import models
 
 
 class AddGame(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
     photo_game = models.ImageField(
         null=True, blank=True, upload_to="challenge", default="https://placehold.co/600x400")
     logo_game = models.ImageField(
@@ -13,21 +13,25 @@ class AddGame(models.Model):
         return self.name
 
 
-GAMES = [
-    (g.name, g.name)
-    for g in AddGame.objects.all()
-]
+GAMES = []
+
+
+for g in AddGame.objects.all():
+    GAMES.append((g.name, g.name))
+
+GAMES = tuple(GAMES)
 
 print(GAMES)
 
 
 class Tournament (models.Model):
 
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
     photo_game = models.ImageField(
         null=True, blank=True, upload_to="challenge", default="https://placehold.co/600x400")
     game = models.ForeignKey(
-        AddGame, on_delete=models.DO_NOTHING, null=True)
+
+        AddGame, on_delete=models.DO_NOTHING)
     games = models.CharField(choices=GAMES, null=True)
 
     description = models.TextField(null=1)
@@ -35,7 +39,7 @@ class Tournament (models.Model):
     notes = models.TextField(null=1)
 
     def __str__(self):
-        return str(self.game.name)
+        return self.name
 
 
 class Player (models.Model):
