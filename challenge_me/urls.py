@@ -9,11 +9,16 @@ urlpatterns = [
     path('login', login_view, name='login'),
     path('logout', logout_view, name='logout'),
 
-    path('tournaments/<str:slug>', tournaments, name="tournaments"),
-    path('tournament_participants/<str:slug>',
-         tournament_participants, name="tournament_participants"),
 
-    path('unjoind', unjoind, name='unjoind'),
+    path('games/', game_list, name='game_list'),
+
+
+    path('games/<str:slug>', tournaments_by_game, name="tournaments_by_game"),
+
+    path('games/tournament/<str:slug>',
+         tournament_details, name="tournament_details"),
+
+    path('join', join, name='join'),
 
 
 

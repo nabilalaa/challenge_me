@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <!-- start tournaments-section -->
+    <section class="bg-maincolor py-28" id="tournaments">
+        {# djlint:off H006 #}
+        <div class="container">
+            <h2 class="title-section">tournaments</h2>
+            <div class="grid justify-center grid-cols-[repeat(1,_minmax(0,_300px))] sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
+                 id="tournaments">
+                {% for game in games %}
+                    <div class="relative w-full max-sm:m-auto h-[500px] rounded-2xl">
+                        <a href="{% url 'tournaments_by_game' game.name|slugify %}">
+                            <div class="absolute w-full h-full">
+                                {% if game.photo_game %}
+                                    <img class="object-cover w-full h-full rounded-2xl"
+                                         src="{{ game.photo_game.url }}"
+                                         alt="{{ game.name }}" />
+                                {% else %}
+                                    <img class="object-cover w-full h-full rounded-2xl"
+                                         src="https://placehold.co/600x400"
+                                         alt="{{ game.name }}" />
+                                {% endif %}
+                            </div>
+                            <div class="overlay absolute w-full h-full bg-secondarycolor bg-opacity-70 rounded-2xl">
+                                <div class="overlay-logo absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 max-w-lg w-52">
+                                    {% if game.logo_game %}
+                                        <img src="{{ game.logo_game.url }}" alt="" />
+                                    {% else %}
+                                        <img src="https://placehold.co/600x400" alt="" />
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock content %}

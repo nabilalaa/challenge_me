@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,HttpResponse
 from .models import *
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
@@ -8,7 +8,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 def index(request):
     context = {
-        "add_game": AddGame.objects.all(),
+        "games": Game.objects.all(),
         "add_about": About.objects.all(),
     }
 
@@ -82,20 +82,26 @@ def logout_view(request):
     return redirect(index)
 
 
-def tournaments(request, slug):
+
+def game_list(request):
+    context = {
+        "games": Game.objects.all()
+    }
+    return render(request, 'game_list.html', context)    
+
+def tournaments_by_game(request, slug):
     if not request.user.is_authenticated:
         return redirect("/#subscription")
 
     context = {
-        "game": AddGame.objects.get(name=slug.replace("-", " ")),
+        "game": Game.objects.get(name=slug.replace("-", " ")),
 
-        "tournaments": Tournament.objects.filter(game__name=slug.replace("-", " ")),
+        "tournaments": Tournament.objects.filter(game__name=slug.replace("-", " "),is_active=True),
     }
-    return render(request, "tournaments.html", context)
+    return render(request, "tournament_list_by_game.html", context)
 
 
-def tournament_participants(request, slug):
-    print(request.GET)
+def tournament_details(request, slug):
     players_list = Player.objects.all()
     paginator = Paginator(players_list, 10)
     page_number = request.GET.get("page", 1)
@@ -120,7 +126,7 @@ def tournament_participants(request, slug):
     if request.method == "POST":
         if (not Player.objects.filter(name=request.user)):
             Player.objects.create(
-                name=request.user, tournament_id=Tournament.objects.get(name=slug.replace("-", " ")).id)
+                name=request.user, tournament_id=Tournament.objects.get(title=slug.replace("-", " ")).id)
             messsage_joind = "leave"
         else:
 
@@ -130,10 +136,13 @@ def tournament_participants(request, slug):
     context = {
         "players": players,
         "message": messsage_joind,
-        "tournament": Tournament.objects.get(name=slug.replace("-", " ")),
+        "tournament": Tournament.objects.get(title=slug.replace("-", " ")),
     }
-    return render(request, "tournament_participants.html", context)
+    return render(request, "tournament_details.html", context)
 
 
-def unjoind(request):
-    print(request)
+def join(request):
+    print(request.user.username)
+    TournamentRegistration.objects.create(player__username=request.user.username)
+
+    return HttpResponse("leave")

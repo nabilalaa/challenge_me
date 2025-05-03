@@ -1,45 +1,35 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
-class AddGame(models.Model):
+class Game(models.Model):
     name = models.CharField(max_length=100, unique=True)
     photo_game = models.ImageField(
         null=True, blank=True, upload_to="challenge", default="https://placehold.co/600x400")
     logo_game = models.ImageField(
         null=True, blank=True, upload_to="challenge", default="https://placehold.co/600x400")
+    
 
     def __str__(self):
 
         return self.name
 
 
-GAMES = []
-
-
-# for g in AddGame.objects.all():
-#     GAMES.append((g.name, g.name))
-
-# GAMES = tuple(GAMES)
-
-# print(GAMES)
-
-
-class Tournament (models.Model):
-
-    name = models.CharField(max_length=100, unique=True)
+class Tournament(models.Model):
+    title = models.CharField(max_length=100, unique=True,null=True)
     photo_game = models.ImageField(
         null=True, blank=True, upload_to="challenge", default="https://placehold.co/600x400")
-    game = models.ForeignKey(
-
-        AddGame, on_delete=models.SET_NULL, null=True)
-    # games = models.CharField(choices=GAMES, null=True)
-
+    game = models.ForeignKey(Game, on_delete=models.SET_NULL, null=True)
     description = models.TextField(null=1)
     prizes = models.TextField(null=1)
     notes = models.TextField(null=1)
+    start_date = models.DateField(null=True)
+    end_date = models.DateField(null=True)
+    is_active = models.BooleanField(default=True,null=1)
+
 
     def __str__(self):
-        return self.name
+        return self.title
 
 
 class Player (models.Model):
@@ -50,6 +40,17 @@ class Player (models.Model):
 
     def __str__(self):
         return self.name
+    
+class TournamentRegistration(models.Model):
+    player = models.ForeignKey(User, on_delete=models.CASCADE)
+    tournament = models.ForeignKey(Tournament, on_delete=models.CASCADE)
+    registered_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('player', 'tournament')  # لاعب واحد لكل بطولة
+
+    def __str__(self):
+        return f"{self.player.username} -> {self.tournament.title}"
 
 
 class About(models.Model):

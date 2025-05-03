@@ -1,48 +1,34 @@
 <!DOCTYPE html>
-{% load static %} {% load compress %}
-
+{% load static %}
+{% load compress %}
 <html lang="en">
-	<head>
-		<meta name="description" content="dd" />
-
-		<meta charset="UTF-8" />
-
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-		<link rel="stylesheet" href="{% static 'css/pacfont.css' %}" />
-
-		<link
-			rel="stylesheet"
-			href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap"
-		/>
-
-		{% compress css %}
-
-		<link rel="stylesheet" href="{% static 'css/output.css' %}" />
-
-		{% endcompress %}
-
-		<title>Challenge Me</title>
-	</head>
-
-	<body>
-		<!-- start nav section -->
-
-		{% include "components/nav.html" %}
-
-		<!-- start content -->
-
-		{% block content %} {% endblock content %}
-
-		<!-- start footer section -->
-
-		{% include "components/footer.html" %}
-
-		<!-- start loading section -->
-
-		{% include "components/loading.html" %}
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
-		{% comment %}
+    <head>
+        <meta name="description" content="dd" />
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+        <link rel="stylesheet" href="{% static 'css/pacfont.css' %}" />
+        <link rel="stylesheet"
+              href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" />
+        <script src="https://unpkg.com/htmx.org@2.0.4"></script>
+        {% compress css %}
+            <link rel="stylesheet" href="{% static 'css/output.css' %}" />
+        {% endcompress %}
+        <title>Challenge Me</title>
+    </head>
+    <body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+        <!-- start nav section -->
+        {% include "components/nav.html" %}
+        <!-- start content -->
+        {% block content %}
+        {% endblock content %}
+        <!-- start footer section -->
+        {% include "components/footer.html" %}
+        <!-- start loading section -->
+        {% include "components/loading.html" %}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
+        {% comment %}
 		<script defer>
 			document.addEventListener("DOMContentLoaded", () => {
 				setTimeout(() => {
@@ -52,7 +38,7 @@
 					document.getElementsByTagName("body")[0].appendChild(script);
 				}, 100);
 			});
-		</script>
-		{% endcomment %}
-	</body>
+</script>
+        {% endcomment %}
+    </body>
 </html>
