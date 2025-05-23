@@ -17,6 +17,25 @@
         {% endcompress %}
         <title>Challenge Me</title>
     </head>
+    <style>
+        
+        .htmx-indicator {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 5000ms ease-in;
+        }
+
+        .htmx-request .htmx-indicator {
+            opacity: 1;
+            visibility: visible;
+
+        }
+
+        .htmx-request.htmx-indicator {
+            opacity: 1;
+            visibility: visible;
+        }
+    </style>
     <body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
         <!-- start nav section -->
         {% include "components/nav.html" %}
