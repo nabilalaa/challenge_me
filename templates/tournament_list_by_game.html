@@ -3,14 +3,27 @@
 {% block content %}
     {# djlint:off H006 #}
     <header class="w-full bg-top bg-cover relative"
-            style="background-image: url('{{ game.photo_game.url }}')">
+            style="background-image: url('{{ game.photo_game_url }}')">
         <div class="overlay w-full h-full bg-secondarycolor bg-opacity-50">
             <section class="about p-8 w-full">
                 <div class="container">
                     <div class="flex justify-center items-center">
-                        <img class="object-cover sm:w-[300px] sm:h-[300px]"
-                             src="{{ game.logo_game.url }}"
-                             alt="" />
+                        {% comment %} <img class="object-cover sm:w-[300px] sm:h-[300px]"
+      src="{{ game.logo_game.url }}"
+      alt="" /> {% endcomment %}
+                        {% if game.logo_game %}
+                            <img class="object-cover sm:w-[300px] sm:h-[300px]"
+                                 src="{{ game.logo_game.url }}"
+                                 alt="{{ game.name }}" />
+                        {% elif game.logo_game_url %}
+                            <img class="object-cover sm:w-[300px] sm:h-[300px]"
+                                 src="{{ game.logo_game_url }}"
+                                 alt="{{ game.name }}">
+                        {% else %}
+                            <img class="object-cover sm:w-[300px] sm:h-[300px]"
+                                 src="https://placehold.co/600x400"
+                                 alt="{{ game.name }}" />
+                        {% endif %}
                     </div>
                 </div>
             </section>

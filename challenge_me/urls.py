@@ -18,7 +18,7 @@ urlpatterns = [
     path('games/tournament/<str:slug>',
          tournament_details, name="tournament_details"),
 
-    path('join', join, name='join'),
+    path('join/<str:slug>', join, name='join'),
 
 
 

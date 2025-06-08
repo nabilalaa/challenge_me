@@ -5,9 +5,12 @@ from django.contrib.auth.models import User
 class Game(models.Model):
     name = models.CharField(max_length=100, unique=True)
     photo_game = models.ImageField(
-        null=True, blank=True, upload_to="challenge", default="https://placehold.co/600x400")
+        null=True, blank=True, upload_to="challenge")
+    photo_game_url = models.URLField(null=True, blank=True,)
     logo_game = models.ImageField(
-        null=True, blank=True, upload_to="challenge", default="https://placehold.co/600x400")
+        null=True, blank=True, upload_to="challenge")
+    logo_game_url = models.URLField(null=True, blank=True,)
+
     
 
     def __str__(self):
@@ -18,7 +21,8 @@ class Game(models.Model):
 class Tournament(models.Model):
     title = models.CharField(max_length=100, unique=True,null=True)
     photo_game = models.ImageField(
-        null=True, blank=True, upload_to="challenge", default="https://placehold.co/600x400")
+        null=True, blank=True, upload_to="challenge")
+
     game = models.ForeignKey(Game, on_delete=models.SET_NULL, null=True)
     description = models.TextField(null=1)
     prizes = models.TextField(null=1)

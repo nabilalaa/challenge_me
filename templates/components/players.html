@@ -1,0 +1,43 @@
+<div class="flow-root" id="players" hx-indicator="#loading">
+    <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
+        {% for player in players %}
+            <li class="py-3 sm:py-4">
+                <div class="flex items-center space-x-4">
+                    <div class="flex-shrink-0">
+                        <svg class="w-6 h-6 text-gray-800 dark:text-white"
+                             aria-hidden="true"
+                             xmlns="http://www.w3.org/2000/svg"
+                             fill="currentColor"
+                             viewBox="0 0 14 18">
+                            <path d="M7 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9Zm2 1H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z" />
+                        </svg>
+                        {% comment %}
+                <img width="" height="" class="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-1.jpg" alt="Neil image" />
+                        {% endcomment %}
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <p class="text-sm font-medium text-gray-900 truncate dark:text-white">{{ player.name }}</p>
+                    </div>
+                </div>
+            </li>
+        {% empty %}
+            <h3>no subs</h3>
+        {% endfor %}
+    </ul>
+    {% if players.number > 1 %}
+        <ul class="flex w-40 border-0 m-auto -space-x-px text-sm p-4">
+            {% if players.has_previous %}
+                <li>
+                    <a href="?page={{ players.previous_page_number }}"
+                       class="flex items-center justify-center px-3 h-8 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Previous</a>
+                </li>
+            {% endif %}
+            {% if players.has_next %}
+                <li>
+                    <a href="?page={{ players.next_page_number }}"
+                       class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Next</a>
+                </li>
+            {% endif %}
+        </ul>
+    {% endif %}
+</div>

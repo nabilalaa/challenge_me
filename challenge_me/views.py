@@ -143,7 +143,7 @@ def tournament_details(request, slug):
 
 def join(request,slug):
     players_list = Player.objects.all()
-    paginator = Paginator(players_list, 10)
+    paginator = Paginator(players_list, 2)
     page_number = request.GET.get("page", 1)
     try:
 
@@ -165,9 +165,10 @@ def join(request,slug):
         Player.objects.filter(name=request.user).delete()
 
         messsage_joind = "join"
-
+        
+    print(players_list)
     context = {
-        "players": players,
+        "players": players_list,
         "message": messsage_joind,
         "tournament": Tournament.objects.get(title=slug.replace("-", " ")),
     }
