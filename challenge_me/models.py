@@ -42,7 +42,7 @@ class Player (models.Model):
         return self.name
     
 class TournamentRegistration(models.Model):
-    player = models.ForeignKey(User, on_delete=models.CASCADE)
+    player = models.ForeignKey(User, on_delete=models.CASCADE,verbose_name="player",related_name="player")
     tournament = models.ForeignKey(Tournament, on_delete=models.CASCADE)
     registered_at = models.DateTimeField(auto_now_add=True)
 

@@ -1,5 +1,6 @@
 <div
-	class="loading flex justify-center items-center fixed top-0 bottom-0 w-full bg-maincolor"
+	class="loading flex justify-center items-center fixed top-0 bottom-0 w-full bg-maincolor htmx-indicator"
+	id="loading"	
 >
 	<div class="text-xl text-center logo max-sm:mb-4">
 		challenge <span>me</span>
@@ -8,7 +9,6 @@
 
 <script>
 	function loading() {
-		document.querySelector(".loading").style.display = "none";
 		document.body.style.overflow = "auto";
 	}
 	document.addEventListener("DOMContentLoaded", () => {

@@ -141,8 +141,34 @@ def tournament_details(request, slug):
     return render(request, "tournament_details.html", context)
 
 
-def join(request):
-    print(request.user.username)
-    TournamentRegistration.objects.create(player__username=request.user.username)
+def join(request,slug):
+    players_list = Player.objects.all()
+    paginator = Paginator(players_list, 10)
+    page_number = request.GET.get("page", 1)
+    try:
 
-    return HttpResponse("leave")
+        players = paginator.page(page_number)
+
+    except EmptyPage:
+        players = paginator.page(paginator.num_pages)
+    except PageNotAnInteger:
+        players = paginator.page(1)
+
+        pass
+    print(request.GET,"\n",Player.objects.filter(name=request.user.username))
+    if not Player.objects.filter(name=request.user.username):
+        
+        Player.objects.create(name=request.user.username,tournament_id=Tournament.objects.get(title=slug.replace("-", " ")).id)
+        messsage_joind = "leave"
+         
+    else:
+        Player.objects.filter(name=request.user).delete()
+
+        messsage_joind = "join"
+
+    context = {
+        "players": players,
+        "message": messsage_joind,
+        "tournament": Tournament.objects.get(title=slug.replace("-", " ")),
+    }
+    return render(request, "tournament_details.html", context)
