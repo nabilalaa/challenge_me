@@ -104,16 +104,24 @@ def tournaments_by_game(request, slug):
 def tournament_details(request, slug):
     if not request.user.is_authenticated:
         return redirect("/#subscription")
+    if Player.objects.filter(name=request.user.username):
+        
+        messsage_joind = "leave"
+         
+    else:
+
+        messsage_joind = "join"
 
     context = {
         "players": Player.objects.all(),
+        "message": messsage_joind,
+
         "tournament": Tournament.objects.get(title=slug.replace("-", " ")),
     }
     return render(request, "tournament_details.html", context)
 
 
 def join(request,slug):
-    print(slug)
     if not Player.objects.filter(name=request.user.username):
         
         Player.objects.create(name=request.user.username,tournament_id=Tournament.objects.get(title=slug).id)
