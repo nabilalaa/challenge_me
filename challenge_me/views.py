@@ -122,10 +122,9 @@ def tournament_details(request, slug):
 
 
 def join(request,slug):
-    print(Tournament.objects.get(title=slug).id)
     if not Player.objects.filter(name=request.user.username):
         
-        Player.objects.create(name=request.user.username,tournament_id=Tournament.objects.get(title=slug).id)
+        Player.objects.create(name=request.user.username,tournament_id=Tournament.objects.get(title=slug.replace("-", " ")).id)
         messsage_joind = "leave"
          
     else:
@@ -136,6 +135,6 @@ def join(request,slug):
     context = {
         "players": Player.objects.all(),
         "message": messsage_joind,
-        "tournament": Tournament.objects.get(title=slug),
+        "tournament": Tournament.objects.get(title=slug.replace("-", " ")),
     }
     return render(request, "tournament_details.html", context)
