@@ -3,7 +3,7 @@
 {% block content %}
     {# djlint:off H006 #}
     <header class="w-full bg-top bg-cover relative"
-            x-data="{image:'{{ game.photo_game }}' ? 'https://res.cloudinary.com/dnru0whph/image/upload/v1749458688/media/{{ game.photo_game }}' : '{{ game.photo_game_url }}' }"
+            x-data="{image:'{{ game.photo_game }}' ? 'https://res.cloudinary.com/dnru0whph/image/upload/v1749458688/{{ game.photo_game }}' : '{{ game.photo_game_url }}' }"
             :style="`background-image: url(${image})`">
         <div class="overlay w-full h-full bg-secondarycolor bg-opacity-50">
             <section class="about p-8 w-full">

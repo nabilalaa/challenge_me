@@ -102,63 +102,21 @@ def tournaments_by_game(request, slug):
 
 
 def tournament_details(request, slug):
-    players_list = Player.objects.all()
-    paginator = Paginator(players_list, 10)
-    page_number = request.GET.get("page", 1)
-    try:
-
-        players = paginator.page(page_number)
-
-    except EmptyPage:
-        players = paginator.page(paginator.num_pages)
-    except PageNotAnInteger:
-        players = paginator.page(1)
-
-        pass
-    if Player.objects.filter(name=request.user):
-        messsage_joind = "leave"
-    else:
-        messsage_joind = "join"
-
     if not request.user.is_authenticated:
         return redirect("/#subscription")
 
-    if request.method == "POST":
-        if (not Player.objects.filter(name=request.user)):
-            Player.objects.create(
-                name=request.user, tournament_id=Tournament.objects.get(title=slug.replace("-", " ")).id)
-            messsage_joind = "leave"
-        else:
-
-            Player.objects.filter(name=request.user).delete()
-            messsage_joind = "join"
-
     context = {
-        "players": players,
-        "message": messsage_joind,
+        "players": Player.objects.all(),
         "tournament": Tournament.objects.get(title=slug.replace("-", " ")),
     }
     return render(request, "tournament_details.html", context)
 
 
 def join(request,slug):
-    players_list = Player.objects.all()
-    paginator = Paginator(players_list, 2)
-    page_number = request.GET.get("page", 1)
-    try:
-
-        players = paginator.page(page_number)
-
-    except EmptyPage:
-        players = paginator.page(paginator.num_pages)
-    except PageNotAnInteger:
-        players = paginator.page(1)
-
-        pass
-    print(request.GET,"\n",Player.objects.filter(name=request.user.username))
+    print(slug)
     if not Player.objects.filter(name=request.user.username):
         
-        Player.objects.create(name=request.user.username,tournament_id=Tournament.objects.get(title=slug.replace("-", " ")).id)
+        Player.objects.create(name=request.user.username,tournament_id=Tournament.objects.get(title=slug).id)
         messsage_joind = "leave"
          
     else:
@@ -166,10 +124,9 @@ def join(request,slug):
 
         messsage_joind = "join"
         
-    print(players_list)
     context = {
-        "players": players_list,
+        "players": Player.objects.all(),
         "message": messsage_joind,
-        "tournament": Tournament.objects.get(title=slug.replace("-", " ")),
+        "tournament": Tournament.objects.get(title=slug),
     }
     return render(request, "tournament_details.html", context)
