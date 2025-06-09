@@ -2,18 +2,25 @@
 {% load smart_if %}
 {% load static %}
 <!---->
+{# djlint:off H006 #}
 {% block content %}
     <header class="w-full bg-top bg-cover relative"
-            style="background-image: url('{{ tournament.game.photo_game.url }}')">
+            x-data="{image:'{{ tournament.game.photo_game }}' ? 'https://res.cloudinary.com/dnru0whph/image/upload/v1749458688/{{ game.photo_game }}' : '{{ tournament.game.photo_game_url }}' }"
+            :style="`background-image: url(${image})`">
         <div class="overlay w-full h-full bg-secondarycolor bg-opacity-50">
             <section class="about p-8 w-full">
                 <div class="container">
+                    {{ tournament.game.photo_game }}
                     <div class="flex justify-center items-center">
-                        <img width=""
-                             height=""
-                             class="object-cover sm:w-[300px] sm:h-[300px]"
-                             src="{{ tournament.game.logo_game.url }}"
-                             alt="" />
+                        {% if tournament.game.logo_game %}
+                            <img class="object-cover sm:w-[300px] sm:h-[300px] "
+                                 src="{{ tournament.game.logo_game.url }}"
+                                 alt="{{ tournament.game.name }}" />
+                        {% else %}
+                            <img class="object-cover sm:w-[300px] sm:h-[300px] "
+                                 src="{{ tournament.game.logo_game_url }}"
+                                 alt="{{ tournament.game.name }}">
+                        {% endif %}
                     </div>
                 </div>
             </section>

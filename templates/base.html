@@ -12,13 +12,14 @@
         <link rel="stylesheet"
               href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" />
         <script src="https://unpkg.com/htmx.org@2.0.4"></script>
+        <script defer
+                src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
         {% compress css %}
             <link rel="stylesheet" href="{% static 'css/output.css' %}" />
         {% endcompress %}
         <title>Challenge Me</title>
     </head>
     <style>
-        
         .htmx-indicator {
             opacity: 0;
             visibility: hidden;
