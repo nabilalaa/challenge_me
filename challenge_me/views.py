@@ -122,6 +122,7 @@ def tournament_details(request, slug):
 
 
 def join(request,slug):
+    print(Tournament.objects.get(title=slug).id)
     if not Player.objects.filter(name=request.user.username):
         
         Player.objects.create(name=request.user.username,tournament_id=Tournament.objects.get(title=slug).id)
