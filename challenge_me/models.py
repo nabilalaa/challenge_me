@@ -22,6 +22,7 @@ class Tournament(models.Model):
     title = models.CharField(max_length=100, unique=True,null=True)
     photo_game = models.ImageField(
         null=True, blank=True, upload_to="challenge")
+    max_participants = models.PositiveIntegerField(null=True)  # العدد الأقصى
 
     game = models.ForeignKey(Game, on_delete=models.SET_NULL, null=True)
     description = models.TextField(null=1)

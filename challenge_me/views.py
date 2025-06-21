@@ -104,16 +104,23 @@ def tournaments_by_game(request, slug):
 def tournament_details(request, slug):
     if not request.user.is_authenticated:
         return redirect("/#subscription")
-    if Player.objects.filter(name=request.user.username):
-        
+
+    players = Player.objects.filter(tournament_id=Tournament.objects.get(title=slug.replace("-", " ")).id)
+    max_participants = Tournament.objects.get(title=slug.replace("-", " ")).max_participants
+    print(players.count())
+    print(max_participants)
+
+    if  Player.objects.filter(name=request.user.username):
         messsage_joind = "leave"
-         
     else:
 
         messsage_joind = "join"
 
+    if players.count() == max_participants and not Player.objects.filter(name=request.user.username):
+        messsage_joind = "max participants" 
+        
     context = {
-        "players": Player.objects.all(),
+        "players": Player.objects.filter(tournament_id=Tournament.objects.get(title=slug.replace("-", " ")).id),
         "message": messsage_joind,
 
         "tournament": Tournament.objects.get(title=slug.replace("-", " ")),
@@ -122,15 +129,22 @@ def tournament_details(request, slug):
 
 
 def join(request,slug):
-    if not Player.objects.filter(name=request.user.username):
+    players = Player.objects.filter(tournament_id=Tournament.objects.get(title=slug.replace("-", " ")).id)
+    max_participants = Tournament.objects.get(title=slug.replace("-", " ")).max_participants
+    if not Player.objects.filter(name=request.user.username) :
         
         Player.objects.create(name=request.user.username,tournament_id=Tournament.objects.get(title=slug.replace("-", " ")).id)
         messsage_joind = "leave"
-         
+        
     else:
         Player.objects.filter(name=request.user).delete()
 
         messsage_joind = "join"
+    
+    
+    if players.count() == max_participants and not Player.objects.filter(name=request.user.username):
+        messsage_joind = "max participants" 
+
         
     context = {
         "players": Player.objects.all(),
