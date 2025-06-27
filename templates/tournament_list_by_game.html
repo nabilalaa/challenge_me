@@ -30,19 +30,20 @@
         <div class="container">
             <div class="grid lg:grid-cols-3 xl:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4">
                 {% for tournament in tournaments %}
-                    <div class="max-w-sm m-auto bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                    <div class="max-w-sm m-auto bg-white border border-gray-200 rounded-lg shadow ">
                         <img class="rounded-t-lg" src="{{ tournament.photo_game.url }}" alt="" />
                         <div class="p-5">
-                            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">
                                 {{ tournament.title|cut:"-"|striptags }}
                             </h5>
-                            <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                            <p class="mb-3 font-normal text-gray-700 
+                            ">
                                 Here are the biggest enterprise technology
                                 acquisitions of 2021 so far, in reverse
                                 chronological order.
                             </p>
                             <a href="{% url 'tournament_details' slug=tournament.title|slugify %}"
-                               class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-maincolor rounded-lg hover:bg-secondarycolor focus:ring-4 focus:outline-none focus:ring-thirdcolor dark:bg-blue-600 dark:hover:bg-maincolor dark:focus:ring-secbg-secondarycolor">
+                               class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-maincolor rounded-lg hover:bg-secondarycolor focus:ring-4 focus:outline-none focus:ring-thirdcolor">
                                 Read more
                                 <svg class="w-3.5 h-3.5 ml-2"
                                      aria-hidden="true"

@@ -1,5 +1,8 @@
 <!DOCTYPE html>
+{% load static tailwind_tags %}
+
 {% load static %}
+
 {% load compress %}
 <html lang="en">
     <head>
@@ -14,7 +17,8 @@
         <script src="https://unpkg.com/htmx.org@2.0.4"></script>
         <script defer
                 src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-        <link rel="stylesheet" href="{% static 'css/output.css' %}" />
+        {% tailwind_css %}
+
         <title>Challenge Me</title>
     </head>
     <style>
@@ -43,8 +47,7 @@
         {% endblock content %}
         <!-- start footer section -->
         {% include "components/footer.html" %}
-        <!-- start loading section -->
-        {% include "components/loading.html" %}
+        
         <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
         {% comment %}
 		<script defer>

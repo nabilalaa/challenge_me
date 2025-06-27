@@ -107,8 +107,6 @@ def tournament_details(request, slug):
 
     players = Player.objects.filter(tournament_id=Tournament.objects.get(title=slug.replace("-", " ")).id)
     max_participants = Tournament.objects.get(title=slug.replace("-", " ")).max_participants
-    print(players.count())
-    print(max_participants)
 
     if  Player.objects.filter(name=request.user.username):
         messsage_joind = "leave"
@@ -118,11 +116,11 @@ def tournament_details(request, slug):
 
     if players.count() == max_participants and not Player.objects.filter(name=request.user.username):
         messsage_joind = "max participants" 
-        
+
     context = {
         "players": Player.objects.filter(tournament_id=Tournament.objects.get(title=slug.replace("-", " ")).id),
+        "playersList": players.values_list("name",flat=True),
         "message": messsage_joind,
-
         "tournament": Tournament.objects.get(title=slug.replace("-", " ")),
     }
     return render(request, "tournament_details.html", context)
@@ -135,20 +133,22 @@ def join(request,slug):
         
         Player.objects.create(name=request.user.username,tournament_id=Tournament.objects.get(title=slug.replace("-", " ")).id)
         messsage_joind = "leave"
+
         
     else:
         Player.objects.filter(name=request.user).delete()
 
         messsage_joind = "join"
-    
-    
+
     if players.count() == max_participants and not Player.objects.filter(name=request.user.username):
         messsage_joind = "max participants" 
 
         
     context = {
-        "players": Player.objects.all(),
+        "players": Player.objects.filter(tournament_id=Tournament.objects.get(title=slug.replace("-", " ")).id),
+        "playersList": players.values_list("name",flat=True),
         "message": messsage_joind,
+
         "tournament": Tournament.objects.get(title=slug.replace("-", " ")),
     }
     return render(request, "tournament_details.html", context)

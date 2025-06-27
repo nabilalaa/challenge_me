@@ -1,7 +1,8 @@
-<nav class="bg-maincolor border-gray-200 dark:bg-secondarycolor">
+<nav class="bg-maincolor border-gray-200">
 	<div class="container">
 		<div
 			class="max-w-screen-xl flex flex-wrap items-center max-sm:flex-col max-sm:justify-center justify-between mx-auto p-4"
+			x-data="{showMenu: false}"
 		>
 			<a href="/" class="flex items-center">
 				<div class="text-xl text-center logo max-sm:mb-4">
@@ -9,20 +10,18 @@
 				</div>
 			</a>
 
-			<div class="flex items-center lg:order-3">
+			<div class="flex items-center lg:order-3 relative">
 				{% if user.is_authenticated%}
 
 				<button
 					type="button"
-					class="flex w-8 h-8 p-2 justify-center items-center mr-3 text-sm bg-gray-800 rounded-full lg:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
-					id="user-menu-button"
-					data-dropdown-toggle="user-dropdown"
-					aria-expanded="false"
-					data-dropdown-placement="bottom"
+					class="flex w-8 h-8 p-2 justify-center items-center mr-3 text-sm bg-gray-800 rounded-full lg:mr-0 focus:ring-4 focus:ring-gray-300 "
+					@click="showMenu=!showMenu"
+					
 				>
 					<span class="sr-only">Open user menu</span>
 					<svg
-						class="w-full h-full text-white dark:text-white"
+						class="w-full h-full text-white "
 						aria-hidden="true"
 						xmlns="http://www.w3.org/2000/svg"
 						fill="currentColor"
@@ -32,23 +31,21 @@
 							d="M7 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9Zm2 1H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z"
 						/>
 					</svg>
-					<!-- <img
-						class="w-8 h-8 rounded-full object-cover"
-						src="https://placehold.co/600x400"
-						alt="user photo"
-					/> -->
+				
 				</button>
 				<!-- Dropdown menu -->
 				<div
-					class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
-					id="user-dropdown"
+					class="z-50 absolute top-9 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow "
+					x-show="showMenu"
+					x-cloak
+					@click.outside="showMenu=false"
 				>
 					<div class="px-4 py-3">
-						<span class="block text-sm text-gray-900 dark:text-white"
+						<span class="block text-sm text-gray-900 "
 							>{{user.username}}</span
 						>
 						<span
-							class="block text-sm text-gray-500 truncate dark:text-gray-400"
+							class="block text-sm text-gray-500 truncate "
 							>{{user.email }}</span
 						>
 					</div>
@@ -56,7 +53,7 @@
 						<li>
 							<a
 								href="#"
-								class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+								class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 "
 								><div>Settings</div></a
 							>
 						</li>
@@ -64,7 +61,7 @@
 						<li>
 							<a
 								href="{% url 'logout'%}"
-								class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+								class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 "
 								><div>Sign out</div></a
 							>
 						</li>
@@ -74,7 +71,7 @@
 				<li class="list-none">
 					<a
 						href="/#subscription"
-						class="block border-secondarycolor border mr-4 p-2 text-secondarycolor bg-maincolor rounded lg:bg-transparent lg:dark:text-blue-500"
+						class="block border-secondarycolor border mr-4 p-2 text-secondarycolor bg-maincolor rounded lg:bg-transparent "
 						aria-current="page"
 						>Login</a
 					>
@@ -83,7 +80,7 @@
 				<button
 					id="navbar-btn"
 					type="button"
-					class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-secondarycolor rounded-lg lg:hidden hover:bg-[#f1faee] focus:outline-none focus:ring-2 focus:ring-[#f1faee] dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+					class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-secondarycolor rounded-lg lg:hidden hover:bg-[#f1faee] focus:outline-none focus:ring-2 focus:ring-[#f1faee] "
 				>
 					<span class="sr-only">Open main menu</span>
 					<svg
@@ -109,12 +106,12 @@
 				id="navbar-user"
 			>
 				<ul
-					class="flex flex-col mt-4 font-medium p-4 lg:p-0 border border-gray-100 rounded-lg bg-[#f1faee] lg:flex-row lg:space-x-8 lg:mt-0 lg:border-0 lg:bg-transparent dark:bg-gray-800 lg:dark:bg-gray-900 dark:border-gray-700"
+					class="flex flex-col mt-4 font-medium p-4 lg:p-0 border border-gray-100  lg:flex-row lg:space-x-8 lg:mt-0 lg:border-0 lg:bg-transparent "
 				>
 					<li>
 						<a
 							href="{%url 'home'%}"
-							class="block py-2 pl-3 pr-4 text-secondarycolor bg-maincolor rounded lg:bg-transparent lg:p-0 lg:dark:text-blue-500"
+							class="block py-2 pl-3 pr-4 text-secondarycolor bg-maincolor rounded lg:bg-transparent lg:p-0 "
 							aria-current="page"
 							><div>Home</div></a
 						>
@@ -123,7 +120,7 @@
 					<li>
 						<a
 							href="/#tournaments"
-							class="block py-2 pl-3 pr-4 text-secondarycolor rounded hover:bg-gray-100 lg:hover:bg-transparent lg:p-0 dark:text-white lg:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+							class="block py-2 pl-3 pr-4 text-secondarycolor rounded hover:bg-gray-100 lg:hover:bg-transparent lg:p-0  "
 							><div>Tournaments</div></a
 						>
 					</li>
@@ -131,21 +128,21 @@
 					<li>
 						<a
 							href="/#subscription"
-							class="block py-2 pl-3 pr-4 text-secondarycolor rounded hover:bg-gray-100 lg:hover:bg-transparent lg:p-0 dark:text-white lg:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+							class="block py-2 pl-3 pr-4 text-secondarycolor rounded hover:bg-gray-100 lg:hover:bg-transparent lg:p-0 "
 							><div>Subscription</div></a
 						>
 					</li>
 					<li>
 						<a
 							href="/#about"
-							class="block py-2 pl-3 pr-4 text-secondarycolor rounded hover:bg-gray-100 lg:hover:bg-transparent lg:p-0 dark:text-white lg:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+							class="block py-2 pl-3 pr-4 text-secondarycolor rounded hover:bg-gray-100 lg:hover:bg-transparent lg:p-0 "
 							><div>About</div></a
 						>
 					</li>
 					<!-- <li>
 						<a
 							href="#"
-							class="block py-2 pl-3 pr-4 text-secondarycolor rounded hover:bg-gray-100 lg:hover:bg-transparent lg:p-0 dark:text-white lg:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+							class="block py-2 pl-3 pr-4 text-secondarycolor rounded hover:bg-gray-100 lg:hover:bg-transparent lg:p-0 "
 							><div>About</div></a
 						>
 					</li> -->

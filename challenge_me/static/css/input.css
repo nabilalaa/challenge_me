@@ -9,9 +9,7 @@ html {
 	scroll-behavior: smooth;
 	background-color: #f1faee;
 }
-body {
-	overflow: hidden;
-}
+
 .logo {
 	font-family: "pacfont";
 	color: #1d3557;
