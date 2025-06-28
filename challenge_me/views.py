@@ -9,7 +9,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 def index(request):
     context = {
         "games": Game.objects.all(),
-        "add_about": About.objects.all(),
+        "about": About.objects.all(),
     }
 
     return render(request, "index.html", context)

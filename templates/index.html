@@ -198,9 +198,11 @@
             <div class="about-content flex flex-col justify-between lg:flex-row gap-8">
                 <div class="about-inner w-full">
                     <h3>frequently asked questions about our site</h3>
+                    {% for q in about %}
                     <div class="questions mb-8">
                         <h4 class="flex justify-between">
-                            Frequently Asked Question one
+                            
+                            {{q.title_about}}
                             <svg class="w-6 h-6 text-gray-80"
                                  aria-hidden="true"
                                  xmlns="http://www.w3.org/2000/svg"
@@ -210,79 +212,12 @@
                             </svg>
                         </h4>
                         <p class="max-w-lg">
-                            Quia iusto hic ipsam assumenda itaque exercitationem debitis
-                            sapiente, inventore nemo molestiae Quia iusto hic ipsam assumenda
-                            itaque exercitationem debitis sapiente, inventore nemo molestiae
+                          {{q.details_about}}
                         </p>
                     </div>
-                    <div class="questions mb-8">
-                        <h4 class="flex justify-between">
-                            Frequently Asked Question two
-                            <svg class="w-6 h-6 text-gray-80"
-                                 aria-hidden="true"
-                                 xmlns="http://www.w3.org/2000/svg"
-                                 fill="none"
-                                 viewBox="0 0 10 14">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1v12m0 0 4-4m-4 4L1 9" />
-                            </svg>
-                        </h4>
-                        <p class="max-w-lg">
-                            Quia iusto hic ipsam assumenda itaque exercitationem debitis
-                            sapiente, inventore nemo molestiae Quia iusto hic ipsam assumenda
-                            itaque exercitationem debitis sapiente, inventore nemo molestiae
-                        </p>
-                    </div>
-                    <div class="questions mb-8">
-                        <h4 class="flex justify-between">
-                            Frequently Asked Question three
-                            <svg class="w-6 h-6 text-gray-80"
-                                 aria-hidden="true"
-                                 xmlns="http://www.w3.org/2000/svg"
-                                 fill="none"
-                                 viewBox="0 0 10 14">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1v12m0 0 4-4m-4 4L1 9" />
-                            </svg>
-                        </h4>
-                        <p class="max-w-lg">
-                            Quia iusto hic ipsam assumenda itaque exercitationem debitis
-                            sapiente, inventore nemo molestiae Quia iusto hic ipsam assumenda
-                            itaque exercitationem debitis sapiente, inventore nemo molestiae
-                        </p>
-                    </div>
-                    <div class="questions mb-8">
-                        <h4 class="flex justify-between">
-                            Frequently Asked Question four
-                            <svg class="w-6 h-6 text-gray-80"
-                                 aria-hidden="true"
-                                 xmlns="http://www.w3.org/2000/svg"
-                                 fill="none"
-                                 viewBox="0 0 10 14">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1v12m0 0 4-4m-4 4L1 9" />
-                            </svg>
-                        </h4>
-                        <p class="max-w-lg">
-                            Quia iusto hic ipsam assumenda itaque exercitationem debitis
-                            sapiente, inventore nemo molestiae Quia iusto hic ipsam assumenda
-                            itaque exercitationem debitis sapiente, inventore nemo molestiae
-                        </p>
-                    </div>
-                    <div class="questions mb-8">
-                        <h4 class="flex justify-between">
-                            Frequently Asked Question five
-                            <svg class="w-6 h-6 text-gray-80"
-                                 aria-hidden="true"
-                                 xmlns="http://www.w3.org/2000/svg"
-                                 fill="none"
-                                 viewBox="0 0 10 14">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1v12m0 0 4-4m-4 4L1 9" />
-                            </svg>
-                        </h4>
-                        <p class="max-w-lg">
-                            Quia iusto hic ipsam assumenda itaque exercitationem debitis
-                            sapiente, inventore nemo molestiae Quia iusto hic ipsam assumenda
-                            itaque exercitationem debitis sapiente, inventore nemo molestiae
-                        </p>
-                    </div>
+                    {% endfor %}
+                        
+                    
                 </div>
                 <div class="about-img w-full rounded-3xl">
                     <img class="rounded-3xl" src="{% static 'images/about-img.jpg' %}" alt="" />
