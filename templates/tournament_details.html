@@ -132,7 +132,7 @@
             class="p-4 bg-white rounded-lg md:p-8"
             x-show="tabs==='description'"
           >
-            {{ tournament.description }}
+            {{ tournament.description|linebreaks  }}
           </div>
           <div class="p-4 bg-white rounded-lg md:p-8" x-show="tabs==='prizes'">
             {{ tournament.prizes }}
