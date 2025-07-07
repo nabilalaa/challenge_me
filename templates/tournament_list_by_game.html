@@ -38,9 +38,7 @@
                             </h5>
                             <p class="mb-3 font-normal text-gray-700 
                             ">
-                                Here are the biggest enterprise technology
-                                acquisitions of 2021 so far, in reverse
-                                chronological order.
+                                {{tournament.description}}
                             </p>
                             <a href="{% url 'tournament_details' slug=tournament.title|slugify %}"
                                class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-maincolor rounded-lg hover:bg-secondarycolor focus:ring-4 focus:outline-none focus:ring-thirdcolor">

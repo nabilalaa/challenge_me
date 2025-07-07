@@ -151,4 +151,4 @@ def join(request,slug):
 
         "tournament": Tournament.objects.get(title=slug.replace("-", " ")),
     }
-    return render(request, "tournament_details.html", context)
+    return render(request, "components/players.html", context)

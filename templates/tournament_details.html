@@ -43,8 +43,10 @@
         </div>
         {% else %}
         <button
-        hx-get="{% url 'join' tournament.title|slugify %}"
-        hx-target="body"
+            id="join"
+
+        hx-post="{% url 'join' tournament.title|slugify %}"
+        hx-target=".flow-root"
         hx-indicator="#loading"
         class="text-white bg-maincolor w-full max-w-[200px] capitalize block font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">{{message}}</button>
    
@@ -60,7 +62,7 @@
         <div class="flow-root">
           <ul role="list" id="players">
             {% for player in players %}
-            <li class="py-3 sm:py-4">
+            <li id="player" class="py-3 sm:py-4">
               <div class="flex items-center space-x-4">
                 <div class="flex-shrink-0">
                   <svg
@@ -89,6 +91,7 @@
         </div>
       </div>
       <div
+        id="tabs"
         class="w-full bg-white shadow shadow-gray-200 rounded-lg max-h-[500px]"
         x-data="{tabs: 'description'}"
       >
@@ -114,7 +117,7 @@
             </button>
           </li>
           {% if user.username in playersList %}
-          <li class="w-full">
+          <li class="w-full" id="notes">
             <button
               @click="tabs='notes'"
               class="inline-block hover:text-gray-500 focus:text-maincolor text-gray-600 w-full p-4 rounded-tr-lg bg-gray-50 hover:bg-gray-100 focus:outline-none"
