@@ -5,11 +5,11 @@ from django.contrib.auth.models import User
 class Game(models.Model):
     name = models.CharField(max_length=100, unique=True)
     photo_game = models.ImageField(
-        null=True, blank=True, upload_to="challenge",default="challenge/challenge_me.png")
-    photo_game_url = models.URLField(null=True, blank=True,default="https://res.cloudinary.com/dnru0whph/image/upload/v1749458914/media/challenge/challenge_me.png")
+        null=True, blank=True, upload_to="challenge")
+    photo_game_url = models.URLField(null=True, blank=True)
     logo_game = models.ImageField(
-        null=True, blank=True, upload_to="challenge",default="challenge/challenge_me.png")
-    logo_game_url = models.URLField(null=True, blank=True,default="https://res.cloudinary.com/dnru0whph/image/upload/v1749458914/media/challenge/challenge_me.png")
+        null=True, blank=True, upload_to="challenge")
+    logo_game_url = models.URLField(null=True, blank=True)
 
     
 
