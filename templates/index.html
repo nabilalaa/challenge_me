@@ -11,7 +11,6 @@
             <div class="grid justify-center grid-cols-[repeat(1,_minmax(0,_300px))] sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
                  id="tournaments">
                 {% for game in games %}
-                    {{ game.photo_url.url }}
                     <div class="relative w-full max-sm:m-auto h-[500px] rounded-2xl">
                         <a href="{% url 'tournaments_by_game' game.name|slugify %}">
                             <div class="absolute w-full h-full">

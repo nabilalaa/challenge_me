@@ -10,7 +10,7 @@ urlpatterns = [
     path('logout', logout_view, name='logout'),
 
 
-    path('games/', game_list, name='game_list'),
+    # path('games/', game_list, name='game_list'),
 
 
     path('games/<str:slug>', tournaments_by_game, name="tournaments_by_game"),

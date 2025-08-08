@@ -83,11 +83,11 @@ def logout_view(request):
 
 
 
-def game_list(request):
-    context = {
-        "games": Game.objects.all()
-    }
-    return render(request, 'game_list.html', context)    
+# def game_list(request):
+#     context = {
+#         "games": Game.objects.all()
+#     }
+#     return render(request, 'game_list.html', context)    
 
 def tournaments_by_game(request, slug):
     if not request.user.is_authenticated:
