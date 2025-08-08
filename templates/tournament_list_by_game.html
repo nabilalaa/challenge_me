@@ -3,23 +3,25 @@
 {% block content %}
     {# djlint:off H006 #}
     <header class="w-full bg-top bg-cover relative"
-            x-data="{image:'{{ game.photo_game }}' ? 'https://res.cloudinary.com/dnru0whph/image/upload/v1749458688/{{ game.photo_game }}' : '{{ game.photo_game_url }}' }"
+            x-data="{image:'{{ game.photo_game }}' ? 'https://res.cloudinary.com/dnru0whph/image/upload/v1749458688/{{ game.photo_game }}' : '{{ game.photo_game_url }}' : 'https://res.cloudinary.com/dnru0whph/image/upload/v1749458914/media/challenge/challenge_me.png' }"
             :style="`background-image: url(${image})`">
         <div class="overlay w-full h-full bg-secondarycolor bg-opacity-50">
             <section class="about p-8 w-full">
                 <div class="container">
                     <div class="flex justify-center items-center">
-                        {% comment %} <img class="object-cover sm:w-[300px] sm:h-[300px]"
-      src="{{ game.logo_game.url }}"
-      alt="" /> {% endcomment %}
+                
                         {% if game.logo_game %}
-                            <img class="object-cover sm:w-[300px] sm:h-[300px]"
-                                 src="{{ game.logo_game.url }}"
-                                 alt="{{ game.name }}" />
+                            <img class="object-cover  w-52 h-full "
+                                    src="{{ game.logo_game.url }}"
+                                    alt="{{ game.name }}" />
+                        {% elif game.logo_game_url %}
+                            <img class="object-cover  w-52 h-full "
+                                    src="{{ game.logo_game_url }}"
+                                    alt="{{ game.name }}">
                         {% else %}
-                            <img class="object-cover sm:w-[300px] sm:h-[300px]"
-                                 src="{{ game.logo_game_url }}"
-                                 alt="{{ game.name }}">
+                            <img class="object-cover w-52 h-full "
+                                    src="https://res.cloudinary.com/dnru0whph/image/upload/v1749458914/media/challenge/challenge_me.png"
+                                    alt="{{ game.name }}" />
                         {% endif %}
                     </div>
                 </div>
@@ -31,7 +33,13 @@
             <div class="grid lg:grid-cols-3 xl:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4">
                 {% for tournament in tournaments %}
                     <div class="max-w-sm m-auto bg-white border border-gray-200 rounded-lg shadow ">
-                        <img class="rounded-t-lg" src="{{ tournament.photo_game.url }}" alt="" />
+                        {% if tournament.photo_game %}
+                            <img class="rounded-t-lg" src="{{ tournament.photo_game.url }}" alt="" />
+                            {% else %}
+                            <img class="rounded-t-lg" src="https://res.cloudinary.com/dnru0whph/image/upload/v1749458914/media/challenge/challenge_me.png" alt="" />
+
+
+                        {% endif %}
                         <div class="p-5">
                             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">
                                 {{ tournament.title|cut:"-"|striptags }}
